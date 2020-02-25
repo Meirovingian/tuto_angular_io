@@ -20,7 +20,8 @@ export class ProductCartComponent implements OnInit {
   }
 
   removeItemFromCart(item){
-    this.items = this.cartService.removeItemFromCart(item);
+    let items = this.cartService.removeItemFromCart(item);
+    this.items = items;
   }
 
 }
