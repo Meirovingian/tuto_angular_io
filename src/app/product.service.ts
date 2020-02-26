@@ -27,19 +27,22 @@ export class ProductService {
 
   constructor() { }
 
-  getProducts(funcIdSet){
+  getProducts(funcIdSet: Set<number>){
     console.log('Start of ProductService getProducts(funcIdSet)');
-    console.log(funcIdSet);
     let productSet = new Set();
-    if(funcIdSet !== null && funcIdSet.length > 0){
-      console.log('Prepare : ' + funcIdSet);
+    if(funcIdSet !== null && funcIdSet.size > 0){
+      console.log('Set has ' + funcIdSet.size + ' elements !');
       for(let product of this.products){
         let productFuncId = product.funcId;
+        console.log('Product functional identifier : ' + productFuncId);
         if(productFuncId !== null && funcIdSet.has(productFuncId)){
+          console.log('HE HAS IT !');
           productSet.add(product);
         }
       }
     }
+
+    console.log('End of ProductService getProducts(funcIdSet)');
     return productSet;
   }
 

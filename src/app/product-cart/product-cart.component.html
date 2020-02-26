@@ -1,11 +1,12 @@
 <h2>Cart content</h2>
-<div *ngFor="let item of items">
+<div *ngFor="let item of itemSet">
   <h3>
     <a>
       {{ item.name }}
     </a>
-    <button (click)="removeItemFromCart(item)">
+    <button (click)="removeItemFromCart(item.funcId)">
       -
     </button>
+    <span> {{ item.funcId }} </span>
   </h3>
 </div>

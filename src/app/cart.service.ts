@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CartService {
 
-  map = new Map();
+  map = new Map<number,number>();
 
   constructor() { }
 
@@ -37,26 +37,15 @@ export class CartService {
 
   getFuncIdSet(){
     console.log('Start of CartService getFuncIdSet()');
-    console.log('TEST START');
-    let testMap = new Map();
-    testMap.set(104,2);
-    testMap.set(108,5);
-    testMap.set(105,4);
-    if(testMap !== null && testMap.size > 0){
-      for(let key of testMap.keys()){
-        console.log('Test value : ' + key);
-      }
-    }
-    console.log('TEST END');
     let funcIdSet = new Set();
     if(this.map !== null && this.map.size > 0){
       console.log('Map has ' + this.map.size + ' elements !');
-      for(let entry of this.map.entries()){
-        console.log('Key to add : ' + entry[0] + ', '+ entry[1]);
-        funcIdSet.add(entry[0]);
-      }
+      this.map.forEach((value: number, key: number) => {
+        console.log('Key to add : ' + key);
+        console.log('Avoided value : ' + value);
+        funcIdSet.add(key);
+      });
     }
-    console.log(funcIdSet);
     console.log('End of CartService getFuncIdSet()');
     return funcIdSet;
   }

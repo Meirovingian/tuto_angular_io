@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { products } from '../products';
 import { CartService } from '../cart.service';
 import { ProductService } from '../product.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-product-cart',
@@ -14,7 +15,8 @@ export class ProductCartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private productService: ProductService
+    private productService: ProductService,
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -22,9 +24,7 @@ export class ProductCartComponent implements OnInit {
     let funcIdSet = this.cartService.getFuncIdSet();
     console.log('Cart funcIdSet : ' + funcIdSet);
     this.itemSet = this.productService.getProducts(funcIdSet);
-    for(let item of this.itemSet){
-      console.log("Element " + item);
-    }
+    console.log('FINAL ' + this.itemSet.size);
   }
 
   removeItemFromCart(funcId){
