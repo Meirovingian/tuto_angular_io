@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { HttpClient } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -7,7 +9,8 @@ export class CartService {
 
   map = new Map<number,number>();
 
-  constructor() { }
+  constructor(
+    private http: HttpClient) { }
 
   addProductToCart(funcId) {
     console.log('Start of CartService addProductToCart ' + funcId);
@@ -70,6 +73,10 @@ export class CartService {
       }
     }
     return this.getFuncIdSet();
+  }
+
+  getShippingPrices() {
+    return this.http.get('/assets/shipping.json');
   }
 
 }

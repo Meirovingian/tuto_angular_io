@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { products } from '../products';
 import { CartService } from '../cart.service';
 import { ProductService } from '../product.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-product-cart',
@@ -15,8 +14,7 @@ export class ProductCartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private productService: ProductService,
-    private http: HttpClient
+    private productService: ProductService
   ) { }
 
   ngOnInit() {
