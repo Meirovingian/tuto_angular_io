@@ -18,7 +18,13 @@ export class ProductCartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.itemSet = this.productService.getProducts(this.cartService.getFuncIdSet);
+    console.log('Start of ProductCartComponent ngOnInit()');
+    let funcIdSet = this.cartService.getFuncIdSet();
+    console.log('Cart funcIdSet : ' + funcIdSet);
+    this.itemSet = this.productService.getProducts(funcIdSet);
+    for(let item of this.itemSet){
+      console.log("Element " + item);
+    }
   }
 
   removeItemFromCart(funcId){

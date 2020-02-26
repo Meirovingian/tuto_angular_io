@@ -28,8 +28,11 @@ export class ProductService {
   constructor() { }
 
   getProducts(funcIdSet){
+    console.log('Start of ProductService getProducts(funcIdSet)');
+    console.log(funcIdSet);
     let productSet = new Set();
     if(funcIdSet !== null && funcIdSet.length > 0){
+      console.log('Prepare : ' + funcIdSet);
       for(let product of this.products){
         let productFuncId = product.funcId;
         if(productFuncId !== null && funcIdSet.has(productFuncId)){
