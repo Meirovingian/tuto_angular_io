@@ -55,7 +55,6 @@ export class CartService {
 
   clearCart() {
     this.map.clear();
-    return this.map;
   }
 
   removeProductFromCart(funcId){

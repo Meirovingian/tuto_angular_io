@@ -2,7 +2,7 @@
 <p>
   <a routerLink="/shipping">Shipping Prices</a>
 </p>
-<div *ngFor="let item of itemSet">
+<div class="cart-item" *ngFor="let item of itemSet">
   <h3>
     <a>
       {{ item.name }}
@@ -21,13 +21,11 @@
     </label>
     <input id="name" type="text" formControlName="name">
   </div>
-
   <div>
     <label for="address">
       Address
     </label>
     <input id="address" type="text" formControlName="address">
   </div>
-
   <button class="button" type="submit">Purchase</button>
 </form>
