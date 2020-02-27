@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
+import { FormBuilder } from '@angular/forms';
+
 import { products } from '../products';
+
 import { CartService } from '../cart.service';
 import { ProductService } from '../product.service';
 
@@ -11,18 +15,29 @@ import { ProductService } from '../product.service';
 export class ProductCartComponent implements OnInit {
 
   itemSet = new Set();
+  checkoutForm;
 
   constructor(
     private cartService: CartService,
-    private productService: ProductService
-  ) { }
+    private productService: ProductService,
+    private formBuilder: FormBuilder
+  ) { 
+    this.checkoutForm = this.formBuilder.group({
+      name: '',
+      address: ''
+    });
+  }
 
   ngOnInit() {
-    console.log('Start of ProductCartComponent ngOnInit()');
-    let funcIdSet = this.cartService.getFuncIdSet();
-    console.log('Cart funcIdSet : ' + funcIdSet);
-    this.itemSet = this.productService.getProducts(funcIdSet);
-    console.log('FINAL ' + this.itemSet.size);
+    this.itemSet = this.productService.getProducts(this.cartService.getFuncIdSet());
+  }
+
+  onSubmit(customerData) {
+    // Process checkout data here
+    this.itemSet = this.cartService.clearCart();
+    this.checkoutForm.reset();
+
+    console.warn('Your order has been submitted', customerData);
   }
 
   removeItemFromCart(funcId){
